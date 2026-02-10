@@ -8,29 +8,35 @@ const Countries = () =>{
     const[countries,setCountries]=useState([]);
     const[loading,setLoading]=useState(true);
     const[searchVal, setSearchVal] = useState("");
-    const[debounceTimer,setDebounceTimer] = useState(null)
+    // const[debounceTimer,setDebounceTimer] = useState(null)
     const[allCountries,setAllCountries] = useState([]);
 
-    const handleChange = (event) =>{
-        const value = event.target.value;
-        setSearchVal(value);
-    }
+     const handleChange = (event) => {
+    const value = event.target.value.toLowerCase();
+    setSearchVal(value);
+
+    const filtered = allCountries.filter((country) =>
+      country.common.toLowerCase().includes(value)
+    );
+
+    setCountries(filtered);
+  };
 
     //Debounced Search
-    useEffect(()=>{
-        if(debounceTimer){
-            clearTimeout(debounceTimer);
-        }
+    // useEffect(()=>{
+    //     if(debounceTimer){
+    //         clearTimeout(debounceTimer);
+    //     }
         
-        const timer = setTimeout(() => {
-            const filtered = allCountries.filter((country)=>
-                country.common.toLowerCase().includes(searchVal.toLowerCase())
-            )
-            setCountries(filtered);
-        },500)
+    //     const timer = setTimeout(() => {
+    //         const filtered = allCountries.filter((country)=>
+    //             country.common.toLowerCase().includes(searchVal.toLowerCase())
+    //         )
+    //         setCountries(filtered);
+    //     },500)
 
-        setDebounceTimer(timer)
-    },[searchVal,allCountries])
+    //     setDebounceTimer(timer)
+    // },[searchVal,allCountries])
 
     useEffect(()=>{
         const fetchCountries = async() => {
@@ -64,9 +70,9 @@ const Countries = () =>{
             </div>
         ))}
 
-        {searchVal && countries.length === 0 && (
+        {/* {searchVal && countries.length === 0 && (
             <p className={styles.notFound}>Country/State not Found</p>
-        )}
+        )} */}
 
         </div>  
         </>
