@@ -11,9 +11,15 @@ const Countries = () =>{
     // const[debounceTimer,setDebounceTimer] = useState(null)
     const[allCountries,setAllCountries] = useState([]);
 
-     const handleChange = (event) => {
+      const handleChange = (event) => {
     const value = event.target.value.toLowerCase();
     setSearchVal(value);
+
+    // IMPORTANT: restore full list when cleared
+    if (value === "") {
+      setCountries(allCountries);
+      return;
+    }
 
     const filtered = allCountries.filter((country) =>
       country.common.toLowerCase().includes(value)
@@ -63,7 +69,7 @@ const Countries = () =>{
         <Searcher handleChange={handleChange}/>
         <div className={styles.grid}>
         {countries.map((item)=>(
-            <div className={styles.gridItem} key={item.common}>
+            <div className={`${styles.gridItem} countryCard`} key={item.common}>
                 <img src={item.png} alt={item.common} className={styles.image}/>
                 <p>{item.common}</p>
 
