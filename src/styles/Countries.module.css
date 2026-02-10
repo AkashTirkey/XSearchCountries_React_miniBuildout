@@ -1,0 +1,41 @@
+.grid{
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.gridItem{
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 16px 10px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.gridItem img{
+    width: 70px;
+    height: 45px;
+    object-fit: cover;
+    margin-bottom: 12px;
+}
+
+.gridItem p{
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Searcher */
+.searchInput{
+    width: 75%;
+    padding: 10px;
+}
+
+.notFound {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 25px;
+  color: #777;
+  margin-top: 40px;
+}
